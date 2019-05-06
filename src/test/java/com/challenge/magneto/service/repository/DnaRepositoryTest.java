@@ -39,14 +39,6 @@ public class DnaRepositoryTest {
         assertFalse(isSuccess);
     }
 
-    @Test(expected = MongoException.class)
-    public void failGetStatsDB() {
-        MongoClient mongoClient = MongoClients.create("mongodb://fail");
-        dnaRepository.setMongoDatabase(mongoClient.getDatabase("fail"));
-        boolean isSuccess = dnaRepository.saveDna(new Dna(new ArrayList<>(), false));
-        assertFalse(isSuccess);
-    }
-
     @Test
     public void saveDnaDBConnection() {
         boolean isSuccess = dnaRepository.saveDna(new Dna(new ArrayList<>(), false));
