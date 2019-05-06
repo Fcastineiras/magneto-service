@@ -31,10 +31,12 @@ public class DnaRepositoryTest {
     @Autowired
     private DnaRepository dnaRepository;
 
-
+    @Autowired
+    private MongoDatabase mongoDatabase;
 
     @Test
     public void saveDnaDBConnection() {
+        dnaRepository.setMongoDatabase(mongoDatabase);
         boolean isSuccess = dnaRepository.saveDna(new Dna(new ArrayList<>(), false));
         assertTrue(isSuccess);
     }

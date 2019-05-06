@@ -15,6 +15,7 @@ El servicio se encuentra desarrollado en Java 8 relacionado con una base de dato
 Informa el estado de la aplicación.
 
 url local: localhost:8080/health
+
 url remoto: https://magneto-service.herokuapp.com/health
 
 #### Eespuesta
@@ -28,6 +29,7 @@ En caso de que la aplicación este bien instanciada:
 Crea un nuevo registro de adn y notifica si el ingresado es mutante o no.
 
 url local: localhost:8080/mutant
+
 url remoto: https://magneto-service.herokuapp.com/mutant
 
 Body: Debe ser un array de Strings, este debe tener la misma cantidad de caracteres por línea que objetos contenidos. Las letras de los Strings solo pueden ser: (A,T,C,G), las
@@ -37,10 +39,10 @@ Body: Debe ser un array de Strings, este debe tener la misma cantidad de caracte
 {
     "dna":[ "TAGTCA", 	
             "CAGTGC", 	
-	        "TTATGT", 	
-	        "AGAAGG", 		
-	        "CTCCTA", 	
-	        "TCACTG"]
+            "TTATGT", 	
+            "AGAAGG", 		
+            "CTCCTA", 	
+            "TCACTG"]
 }
 	
 ```
@@ -61,6 +63,10 @@ En caso de no respetar los requisitos en el Body:
 ### GET /stats
 
 Informa la cantidad de ADN registrado, mutantes y normales y la proporción existente de mutantes en relación a los otros. 
+
+url local: localhost:8080/stats
+
+url remoto: https://magneto-service.herokuapp.com/stats
 
 #### Respuesta
     http status: 200
