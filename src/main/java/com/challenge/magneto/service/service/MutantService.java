@@ -1,7 +1,7 @@
 package com.challenge.magneto.service.service;
 
 import com.challenge.magneto.service.model.Dna;
-import com.challenge.magneto.service.model.SequencesFinder;
+import com.challenge.magneto.service.util.SequencesFinder;
 import com.challenge.magneto.service.repository.DnaRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
