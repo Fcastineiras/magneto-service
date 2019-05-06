@@ -13,7 +13,6 @@ public class StatsTransformer {
         Long mutantsCount = isMutantCollection.stream().filter(i -> i != null).filter(j -> j).count();
         Long humansCount = totalValues - mutantsCount;
         Double ratio = getRatio(mutantsCount.doubleValue(), humansCount.doubleValue());
-
         return new StatsDto(mutantsCount, humansCount, ratio);
     }
 

@@ -31,6 +31,14 @@ public class DnaRepositoryTest {
     @Autowired
     private DnaRepository dnaRepository;
 
+
+
+    @Test
+    public void saveDnaDBConnection() {
+        boolean isSuccess = dnaRepository.saveDna(new Dna(new ArrayList<>(), false));
+        assertTrue(isSuccess);
+    }
+
     @Test
     public void failSaveDnaDB() {
         MongoClient mongoClient = MongoClients.create("mongodb://fail");
@@ -39,9 +47,5 @@ public class DnaRepositoryTest {
         assertFalse(isSuccess);
     }
 
-    @Test
-    public void saveDnaDBConnection() {
-        boolean isSuccess = dnaRepository.saveDna(new Dna(new ArrayList<>(), false));
-        assertTrue(isSuccess);
-    }
+
 }

@@ -17,9 +17,6 @@ public class MagnetoServiceApplication {
 	@Value("${mongodb.dbname}")
 	private String mongoDBName;
 
-	@Value("${required.repeated.char}")
-	private int repeatedChar;
-
 	public static void main(String[] args) {
 		SpringApplication.run(MagnetoServiceApplication.class, args);
 	}
