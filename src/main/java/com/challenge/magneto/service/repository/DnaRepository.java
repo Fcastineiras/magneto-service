@@ -28,7 +28,7 @@ public class DnaRepository {
     @Value("${mongodb.collection.name}")
     private String mongoCollectionName;
 
-    public boolean saveDna(Dna dna) {
+    public boolean insertDna(Dna dna) {
         try {
         Document dnaDocument = new Document();
         dnaDocument.put("dna", dna.getDna());

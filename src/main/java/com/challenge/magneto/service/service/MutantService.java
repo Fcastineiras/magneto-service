@@ -35,7 +35,7 @@ public class MutantService {
         SequencesFinder sequencesFinder = new SequencesFinder(dnaMatrix, requiredSequences, repeatedChar);
         boolean isMutant = sequencesFinder.isSequencesRequiredFound();
         Dna dna = new Dna(dnaArray, isMutant);
-        dnaRepository.saveDna(dna);
+        dnaRepository.insertDna(dna);
         return dna;
     }
 

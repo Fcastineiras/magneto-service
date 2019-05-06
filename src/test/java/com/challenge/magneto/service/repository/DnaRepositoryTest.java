@@ -1,8 +1,6 @@
 package com.challenge.magneto.service.repository;
 
-import com.challenge.magneto.service.mocks.DnaDtoMocks;
 import com.challenge.magneto.service.model.Dna;
-import com.mongodb.MongoException;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
@@ -13,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
@@ -37,7 +34,7 @@ public class DnaRepositoryTest {
     @Test
     public void saveDnaDBConnection() {
         dnaRepository.setMongoDatabase(mongoDatabase);
-        boolean isSuccess = dnaRepository.saveDna(new Dna(new ArrayList<>(), false));
+        boolean isSuccess = dnaRepository.insertDna(new Dna(new ArrayList<>(), false));
         assertTrue(isSuccess);
     }
 
@@ -45,7 +42,7 @@ public class DnaRepositoryTest {
     public void failSaveDnaDB() {
         MongoClient mongoClient = MongoClients.create("mongodb://fail");
         dnaRepository.setMongoDatabase(mongoClient.getDatabase("fail"));
-        boolean isSuccess = dnaRepository.saveDna(new Dna(new ArrayList<>(), false));
+        boolean isSuccess = dnaRepository.insertDna(new Dna(new ArrayList<>(), false));
         assertFalse(isSuccess);
     }
 
