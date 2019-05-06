@@ -1,0 +1,210 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: SequencesFinder</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.challenge.magneto.service.util</a> ]
+</div>
+
+<h1>Coverage Summary for Class: SequencesFinder (com.challenge.magneto.service.util)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SequencesFinder</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/ 10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (67/ 67)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.challenge.magneto.service.util;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;/**
+<i>4</i>&nbsp; * Created by Fiamma on 4/5/2019.
+<i>5</i>&nbsp; */
+<i>6</i>&nbsp;public class SequencesFinder {
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;    private char[][] dna;
+<i>9</i>&nbsp;    private int dnaSize;
+<i>10</i>&nbsp;    private int sequencesRequired;
+<i>11</i>&nbsp;    private int sameCharRequired;
+<b class="fc"><i>12</i>&nbsp;    private int sequencesFoundCount = 0;</b>
+<i>13</i>&nbsp;
+<b class="fc"><i>14</i>&nbsp;    public SequencesFinder(char[][] dna, int sequencesRequired, int sameCharRequired) {</b>
+<b class="fc"><i>15</i>&nbsp;        this.dna = dna;</b>
+<b class="fc"><i>16</i>&nbsp;        this.dnaSize = dna.length;</b>
+<b class="fc"><i>17</i>&nbsp;        this.sequencesRequired = sequencesRequired;</b>
+<b class="fc"><i>18</i>&nbsp;        this.sameCharRequired = sameCharRequired;</b>
+<b class="fc"><i>19</i>&nbsp;    }</b>
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    public boolean isSequencesRequiredFound() {
+<b class="fc"><i>22</i>&nbsp;        if (dnaSize &lt; sameCharRequired){</b>
+<b class="fc"><i>23</i>&nbsp;            return false;</b>
+<i>24</i>&nbsp;        }
+<b class="fc"><i>25</i>&nbsp;        int function = 1;</b>
+<b class="fc"><i>26</i>&nbsp;        while (function &gt; 0){</b>
+<b class="fc"><i>27</i>&nbsp;            function = functionSelected(function);</b>
+<b class="fc"><i>28</i>&nbsp;            if (sequencesFoundCount &gt;= sequencesRequired){</b>
+<b class="fc"><i>29</i>&nbsp;                return true;</b>
+<i>30</i>&nbsp;            }
+<i>31</i>&nbsp;        }
+<b class="fc"><i>32</i>&nbsp;        return false;</b>
+<i>33</i>&nbsp;    }
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    private int functionSelected(int function){
+<b class="fc"><i>36</i>&nbsp;        switch (function){</b>
+<i>37</i>&nbsp;            case 1:
+<b class="fc"><i>38</i>&nbsp;                reedHorizontal();</b>
+<b class="fc"><i>39</i>&nbsp;                break;</b>
+<i>40</i>&nbsp;            case 2:
+<b class="fc"><i>41</i>&nbsp;                reedVertical();</b>
+<b class="fc"><i>42</i>&nbsp;                break;</b>
+<i>43</i>&nbsp;            case 3:
+<b class="fc"><i>44</i>&nbsp;                reedDiagonalDownUp();</b>
+<b class="fc"><i>45</i>&nbsp;                break;</b>
+<i>46</i>&nbsp;            case 4:
+<b class="fc"><i>47</i>&nbsp;                reedDiagonalDownUp2();</b>
+<b class="fc"><i>48</i>&nbsp;                break;</b>
+<i>49</i>&nbsp;            case 5:
+<b class="fc"><i>50</i>&nbsp;                reedDiagonalUpDown();</b>
+<b class="fc"><i>51</i>&nbsp;                break;</b>
+<i>52</i>&nbsp;            case 6:
+<b class="fc"><i>53</i>&nbsp;                reedDiagonalUpDown2();</b>
+<b class="fc"><i>54</i>&nbsp;                break;</b>
+<i>55</i>&nbsp;            default:
+<b class="fc"><i>56</i>&nbsp;                return 0;</b>
+<i>57</i>&nbsp;        }
+<b class="fc"><i>58</i>&nbsp;        return function + 1;</b>
+<i>59</i>&nbsp;    }
+<i>60</i>&nbsp;
+<i>61</i>&nbsp;    private void reedHorizontal() {
+<b class="fc"><i>62</i>&nbsp;        for (int i = 0; i &lt; dnaSize; i++) {</b>
+<b class="fc"><i>63</i>&nbsp;            int sameCharCount = 1;</b>
+<b class="fc"><i>64</i>&nbsp;            for (int j = 0; j &lt; dnaSize - 1; j++) {</b>
+<b class="fc"><i>65</i>&nbsp;                sameCharCount = validMatch(i,0,j,1,sameCharCount);</b>
+<i>66</i>&nbsp;            }
+<i>67</i>&nbsp;        }
+<b class="fc"><i>68</i>&nbsp;    }</b>
+<i>69</i>&nbsp;
+<i>70</i>&nbsp;    private void reedVertical() {
+<b class="fc"><i>71</i>&nbsp;        for (int i = 0; i &lt; dnaSize ; i++) {</b>
+<b class="fc"><i>72</i>&nbsp;            int sameCharCount = 1;</b>
+<b class="fc"><i>73</i>&nbsp;            for (int j = 0; j &lt; dnaSize - 1; j++) {</b>
+<b class="fc"><i>74</i>&nbsp;                sameCharCount = validMatch(j,1,i,0,sameCharCount);</b>
+<i>75</i>&nbsp;            }
+<i>76</i>&nbsp;        }
+<b class="fc"><i>77</i>&nbsp;    }</b>
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;    private void reedDiagonalUpDown() {
+<b class="fc"><i>80</i>&nbsp;        for (int i = 0; i + 3 &lt; dnaSize; i++) {</b>
+<b class="fc"><i>81</i>&nbsp;            int sameCharCount = 1;</b>
+<b class="fc"><i>82</i>&nbsp;            for (int j = 0; j &lt; dnaSize - i - 1; j++) {</b>
+<b class="fc"><i>83</i>&nbsp;                sameCharCount = validMatch(j + i, 1, j , 1, sameCharCount);</b>
+<i>84</i>&nbsp;            }
+<i>85</i>&nbsp;        }
+<b class="fc"><i>86</i>&nbsp;    }</b>
+<i>87</i>&nbsp;
+<i>88</i>&nbsp;    private void reedDiagonalUpDown2() {
+<b class="fc"><i>89</i>&nbsp;        for (int i = 1; i &lt; dnaSize; i++) {</b>
+<b class="fc"><i>90</i>&nbsp;            int sameCharCount = 1;</b>
+<b class="fc"><i>91</i>&nbsp;            for (int j = 0; j &lt; dnaSize - i - 1; j++) {</b>
+<b class="fc"><i>92</i>&nbsp;                sameCharCount = validMatch(j,1,j + i,1,sameCharCount);</b>
+<i>93</i>&nbsp;            }
+<i>94</i>&nbsp;        }
+<b class="fc"><i>95</i>&nbsp;    }</b>
+<i>96</i>&nbsp;
+<i>97</i>&nbsp;    private void reedDiagonalDownUp() {
+<b class="fc"><i>98</i>&nbsp;        for (int i = 3; i &lt; dnaSize; i++) {</b>
+<b class="fc"><i>99</i>&nbsp;            int sameCharCount = 1;</b>
+<b class="fc"><i>100</i>&nbsp;            for (int j = 0; j &lt;= i - 1; j++) {</b>
+<b class="fc"><i>101</i>&nbsp;                sameCharCount = validMatch(i - j,-1,j,1,sameCharCount);</b>
+<i>102</i>&nbsp;            }
+<i>103</i>&nbsp;        }
+<b class="fc"><i>104</i>&nbsp;    }</b>
+<i>105</i>&nbsp;
+<i>106</i>&nbsp;    private void reedDiagonalDownUp2() {
+<b class="fc"><i>107</i>&nbsp;        for (int i = 0; i &lt; dnaSize - 4; i++) {</b>
+<b class="fc"><i>108</i>&nbsp;            int sameCharCount = 1;</b>
+<b class="fc"><i>109</i>&nbsp;            for (int j = 0; j &lt; dnaSize - i - 1 - 1; j++) {</b>
+<b class="fc"><i>110</i>&nbsp;                sameCharCount = validMatch(dnaSize - j - 1,0,j + i + 1,1,sameCharCount);</b>
+<i>111</i>&nbsp;            }
+<i>112</i>&nbsp;        }
+<b class="fc"><i>113</i>&nbsp;    }</b>
+<i>114</i>&nbsp;
+<i>115</i>&nbsp;    private int validMatch(int line, int variantLine, int column, int variantColumn, int sameCharCount) {
+<b class="fc"><i>116</i>&nbsp;        if (dna[line][column] == dna[line + variantLine][column + variantColumn]) {</b>
+<b class="fc"><i>117</i>&nbsp;            sameCharCount++;</b>
+<b class="fc"><i>118</i>&nbsp;            if (sameCharCount &gt;= sameCharRequired){</b>
+<b class="fc"><i>119</i>&nbsp;                sameCharCount = 1;</b>
+<b class="fc"><i>120</i>&nbsp;                sequencesFoundCount++;</b>
+<i>121</i>&nbsp;            }
+<i>122</i>&nbsp;        } else {
+<b class="fc"><i>123</i>&nbsp;            sameCharCount = 1;</b>
+<i>124</i>&nbsp;        }
+<b class="fc"><i>125</i>&nbsp;        return sameCharCount;</b>
+<i>126</i>&nbsp;    }
+<i>127</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2019-05-06 10:59</div>
+</div>
+</body>
+</html>

@@ -87,6 +87,10 @@ Localizado en : mongodb+srv://dna-xq0ap.mongodb.net/test
 Instancia del micro servicio de Java: https://www.heroku.com/
 Localizado en : https://magneto-service.herokuapp.com/
 
+## Coverage
+
+La informacion detallada se encuentra en ./coverage/index.html
+
 ## Autor
 
 * **Fiamma Castiñeiras** - [fcastineiras](https://github.com/fcastineiras)
