@@ -68,8 +68,8 @@ public class SequencesFinder {
     }
 
     private void reedVertical() {
-        int sameCharCount = 1;
         for (int i = 0; i < dnaSize ; i++) {
+            int sameCharCount = 1;
             for (int j = 0; j < dnaSize - 1; j++) {
                 sameCharCount = validMatch(j,1,i,0,sameCharCount);
             }
@@ -95,8 +95,8 @@ public class SequencesFinder {
     }
 
     private void reedDiagonalDownUp() {
-        int sameCharCount = 1;
         for (int i = 3; i < dnaSize; i++) {
+            int sameCharCount = 1;
             for (int j = 0; j <= i - 1; j++) {
                 sameCharCount = validMatch(i - j,-1,j,1,sameCharCount);
             }
@@ -104,8 +104,8 @@ public class SequencesFinder {
     }
 
     private void reedDiagonalDownUp2() {
-        int sameCharCount = 1;
         for (int i = 0; i < dnaSize - 4; i++) {
+            int sameCharCount = 1;
             for (int j = 0; j < dnaSize - i - 1 - 1; j++) {
                 sameCharCount = validMatch(dnaSize - j - 1,0,j + i + 1,1,sameCharCount);
             }
