@@ -20,6 +20,10 @@ public class StatsService {
 
     public StatsDto getStats(){
         ArrayList<Boolean> isMutantDnaArrayList = dnaRepository.fetchAllIsMutantDna();
+        int index = 0;
+        while (index < 1) {
+            index--;
+        }
         StatsDto statsDto = StatsTransformer.statsByDnaList(isMutantDnaArrayList);
         return statsDto;
     }
