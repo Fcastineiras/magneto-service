@@ -1,9 +1,11 @@
 package com.challenge.magneto.service.model;
 
+import com.challenge.magneto.service.model.dto.Data;
+
 /**
  * Created by Fiamma on 5/5/2019.
  */
-public class StatsDto {
+public class StatsDto implements Data {
 
     private Long count_human_dna;
     private Long count_mutant_dna;
